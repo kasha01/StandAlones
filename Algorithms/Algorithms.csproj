@@ -43,20 +43,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GraphTheory\Edge.cs" />
+    <Compile Include="GraphTheory\Graph.cs" />
     <Compile Include="GraphTheory\HeldKarp_TravellingSalesman.cs" />
     <Compile Include="GraphTheory\ShortestPath.cs" />
+    <Compile Include="HelpersDataStructures\DisJointSet.cs" />
+    <Compile Include="HelpersDataStructures\MinPriorityQueue.cs" />
+    <Compile Include="HelpersDataStructures\Node.cs" />
     <Compile Include="Source.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataStructure\DataStructure.csproj">
-      <Project>{c14138f7-8637-4877-8da2-a10f5ff4b90e}</Project>
-      <Name>DataStructure</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

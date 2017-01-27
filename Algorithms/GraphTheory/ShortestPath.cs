@@ -1,4 +1,4 @@
-﻿using DataStructure.MinPriorityQueue;
+﻿using Algorithms.HelpersDataStructures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ namespace Algorithms.GraphTheory
 
         #region Dijkstra
         // check MinPriorityQueue Implementation in DataStructure Project
-        public static MinPriorityQueue_of_nodes minpriorityqueue;
+        public static MinPriorityQueue<int> minpriorityqueue;
 
         public static int MinimumDistance(int[] distance, bool[] shortestPathTreeSet, int verticesCount)
         {
@@ -80,7 +80,7 @@ namespace Algorithms.GraphTheory
             int[] distance = new int[verticesCount];
             bool[] shortestPathTreeSet = new bool[verticesCount];
             predecessor = new int[verticesCount];
-            minpriorityqueue = new MinPriorityQueue_of_nodes(verticesCount);
+            minpriorityqueue = new MinPriorityQueue<int>(verticesCount);
 
             // Initialize
             for (int i = 0; i < verticesCount; ++i)
