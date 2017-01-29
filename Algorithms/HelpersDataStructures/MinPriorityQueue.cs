@@ -87,6 +87,7 @@ namespace Algorithms.HelpersDataStructures
         {
             if (heapSize == arr.Length) { throw new Exception("Reached Max Size"); }
 
+            n.priority = p;
             arr[heapSize] = n;
             heapSize++;
             siftUp(heapSize - 1);

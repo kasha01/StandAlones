@@ -100,6 +100,7 @@ namespace Algorithms.GraphTheory
             dic2.Add(find, fmincost);
             parent.Add(find, fminprevnode);
 
+            Console.WriteLine("Shortest Travel Route Cost: " + fmincost);
             getRoute(parent, lastsubset);
         }
 

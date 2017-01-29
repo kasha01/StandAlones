@@ -12,7 +12,7 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            KruskalDriver();
+            Driver_HeldKarp();
             Console.ReadLine();
         }
 
@@ -48,6 +48,37 @@ namespace Algorithms
 
         }
 
+        static void Driver_PrimAlgo()
+        {
+            Algorithms.GraphTheory.Graph<char> g = new Algorithms.GraphTheory.Graph<char>(6);
+            Helper.Node<char> na = new Helper.Node<char>('A');
+            Helper.Node<char> nb = new Helper.Node<char>('B');
+            Helper.Node<char> nc = new Helper.Node<char>('C');
+            Helper.Node<char> nd = new Helper.Node<char>('D');
+            Helper.Node<char> ne = new Helper.Node<char>('E');
+            Helper.Node<char> nf = new Helper.Node<char>('F');
+
+            g.addNode(na);
+            g.addNode(nb);
+            g.addNode(nc);
+            g.addNode(nd);
+            g.addNode(ne);
+            g.addNode(nf);
+
+            g.connnectNodeWithAdj(na, nd, 1);
+            g.connnectNodeWithAdj(na, nb, 3);
+            g.connnectNodeWithAdj(nb, nd, 3);
+            g.connnectNodeWithAdj(nb, nc, 1);
+            g.connnectNodeWithAdj(nc, nd, 1);
+            g.connnectNodeWithAdj(nc, nf, 4);
+            g.connnectNodeWithAdj(nc, ne, 5);
+            g.connnectNodeWithAdj(nd, ne, 6);
+            g.connnectNodeWithAdj(ne, nf, 2);
+
+            g.GetMinSpanTree_Prim();
+
+        }
+
         private static void DijkstraDriver()
         {
             int[,] graph = {
@@ -63,12 +94,16 @@ namespace Algorithms
             };
 
             Algorithms.GraphTheory.ShortestPath.Dijkstra(graph, 0, 9);
+            Console.WriteLine();
+            Console.WriteLine("Shortest Path from 0 to 3 is:");
             Algorithms.GraphTheory.ShortestPath.PrintPathFromSToV(3);
 
             Console.WriteLine();
             Console.WriteLine("Now using Priority Queue");
 
             Algorithms.GraphTheory.ShortestPath.DijkstraWithPriorityQueue(graph, 0, 9);
+            Console.WriteLine();
+            Console.WriteLine("Shortest Path from 0 to 3 is:");
             Algorithms.GraphTheory.ShortestPath.PrintPathFromSToV(3);
         }
 
@@ -102,8 +137,23 @@ namespace Algorithms
 
 
             //Perform the traversal of the graph
-            g.DFS();
+
+            //Console.WriteLine("DFS Traversal is: ");
+            //g.DFS();
+            Console.WriteLine("BFS Traversal is: ");
             g.BFS(nA);
+        }
+
+        static void Driver_HeldKarp()
+        {
+            var sk = new GraphNS.HeldKarp_TravellingSalesman(4);
+            int[,] d = {
+                { 0, 1, 15, 6},
+                { 2,0,7,3 },
+                { 9,6,0,12 },
+                { 10,4,8,0 }
+            };
+            sk.HeldKarp(d);
         }
     }
 }
