@@ -12,6 +12,33 @@ namespace DataStructure
         {
         }
 
+        static void Trie_Driver()
+        {
+            Trees.TrieTree tree = new Trees.TrieTree();
+            tree.insert("abc");
+            tree.insert("adk");
+            tree.insert("ab");
+            tree.insert("abz");
+
+            //tree.insert("ab");
+            //tree.insert("a");
+            //tree.delete("ab", 0, tree.root);
+
+
+            Console.WriteLine("abc: " + tree.IsFound("abc"));
+            Console.WriteLine("zkf: " + tree.IsFound("zkf"));
+            Console.WriteLine("abz: " + tree.IsFound("abz"));
+            Console.WriteLine("ab: " + tree.IsFound("ab"));
+            Console.WriteLine("kdf: " + tree.IsFound("kdf"));
+            Console.WriteLine("adk: " + tree.IsFound("adk"));
+            tree.delete("abc", 0, tree.root);
+            tree.delete("abc", 0, tree.root);
+            Console.WriteLine("abc: " + tree.IsFound("abc"));
+            Console.WriteLine("ab: " + tree.IsFound("ab"));
+            Console.WriteLine("a: " + tree.IsFound("a"));
+
+        }
+
         private static void BST_Driver()
         {
             DataStructure.Trees.BinarySearchTree tree = new Trees.BinarySearchTree();

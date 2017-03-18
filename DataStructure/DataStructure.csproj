@@ -52,6 +52,7 @@
     <Compile Include="Trees\AVL_Tree.cs" />
     <Compile Include="Trees\BinarySearchTree.cs" />
     <Compile Include="Trees\Node.cs" />
+    <Compile Include="Trees\TrieTree.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
