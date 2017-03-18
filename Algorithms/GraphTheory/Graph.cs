@@ -28,7 +28,7 @@ namespace Algorithms.GraphTheory
             pred = new int[size];
             visited = new bool[size];
         }
-        
+
         public void SetRootNode(Node<T> n)
         {
             this.root = n;
@@ -130,6 +130,7 @@ namespace Algorithms.GraphTheory
             }
         }
 
+        // Using Recurssion
         public int myDFS(Node<T> root)
         {
             Node<T> child = null;
@@ -143,8 +144,9 @@ namespace Algorithms.GraphTheory
                 sum = sum + counter;
                 wMatrix[root.index, child.index] = counter;
                 ids.Add(counter);
-                if (root.index == 0) { sum = 0; }
+                //if (root.index == 0) { sum = 0; } // Can't remember why I put this line
             }
+            Console.WriteLine(String.Format("Node {0} has {1} Child", root.data, sum));
             return sum + 1;
         }
 
@@ -249,7 +251,7 @@ namespace Algorithms.GraphTheory
         {
             return new EdgeComparer();
         }
-        
+
         private Node<T> getAdjacentNode(Node<T> n)
         {
             int j = 0;

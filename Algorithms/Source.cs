@@ -135,11 +135,14 @@ namespace Algorithms
             g.connectNode(nB, nF);
             g.connectNode(nC, nF);
 
-
             //Perform the traversal of the graph
 
             //Console.WriteLine("DFS Traversal is: ");
             //g.DFS();
+
+            //Console.WriteLine("DFS Traversal To find Count of Children for each Node: ");
+            //g.myDFS(nA);
+
             Console.WriteLine("BFS Traversal is: ");
             g.BFS(nA);
         }
