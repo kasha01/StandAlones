@@ -10,6 +10,7 @@ namespace DataStructure
     {
         static void Main(string[] args)
         {
+            Console.ReadLine();
         }
 
         static void Trie_Driver()
@@ -97,9 +98,9 @@ namespace DataStructure
             int[] arr = { 10, 5, 2, 20, 15, 6 };
             printArray(arr);
             Console.WriteLine();
-            Heap.Heap hmin = new Heap.Heap(arr, false);
-            hmin.printHeap();
-            hmin.heapsort(false);
+            Heap.Heap heap = new Heap.Heap(arr, true);
+            heap.printHeap();
+            heap.heapsort(true);
         }
 
         static void printArray(int[] arr)

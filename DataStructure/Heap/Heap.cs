@@ -105,7 +105,8 @@ namespace DataStructure.Heap
         {
             for (int i = size - 1; i >= 0; i--)
             {
-                //swap - heap allows O(1) access to max and min. so we always swap to put the Max at the end. then we heapfiy to rebalance the heap and DECREASE THE SIZE OF THE HEAP, so we don't alter the max value and continue
+                //swap - heap allows O(1) access to max(max heap)/min(min heap). so we always swap to put the Max at the end. then we heapfiy to rebalance the heap and DECREASE THE SIZE OF THE HEAP, so we don't alter the max value and continue
+                // Max Heap --> Ascending Sort (Max swapped to the end) . Min Heap --> Descending Sort
                 int temp = arr[i];
                 arr[i] = arr[0];
                 arr[0] = temp;
