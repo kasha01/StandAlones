@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructure", "DataStruct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithms", "Algorithms\Algorithms.csproj", "{BEBBAE79-3D53-4210-91F8-C9DC8FE305E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mix", "Mix\Mix.csproj", "{4E0A2454-3040-4FB2-813B-200744D901C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{BEBBAE79-3D53-4210-91F8-C9DC8FE305E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEBBAE79-3D53-4210-91F8-C9DC8FE305E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEBBAE79-3D53-4210-91F8-C9DC8FE305E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E0A2454-3040-4FB2-813B-200744D901C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E0A2454-3040-4FB2-813B-200744D901C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E0A2454-3040-4FB2-813B-200744D901C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E0A2454-3040-4FB2-813B-200744D901C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

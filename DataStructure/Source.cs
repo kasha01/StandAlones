@@ -10,6 +10,7 @@ namespace DataStructure
     {
         static void Main(string[] args)
         {
+            BST_Driver();
             Console.ReadLine();
         }
 
@@ -46,10 +47,10 @@ namespace DataStructure
 
             tree.insert(1);
             DataStructure.Trees.Node root = tree.root;
-            root.right = new DataStructure.Trees.Node(3);
-            root.left = new DataStructure.Trees.Node(2);
-            root.left.right = new DataStructure.Trees.Node(5);
-            root.left.left = new DataStructure.Trees.Node(4);
+            root.right = new DataStructure.Trees.Node(2);
+            root.left = new DataStructure.Trees.Node(1);
+            root.right.right = new DataStructure.Trees.Node(3);
+            root.right.left = new DataStructure.Trees.Node(4);
 
             tree.inorder(tree.root);
             Console.WriteLine();
@@ -58,6 +59,8 @@ namespace DataStructure
             tree.postorder(tree.root);
             Console.WriteLine();
             Console.WriteLine(tree.getDepth(root.left.left));
+            int tt = tree.traverse_in_postorder(tree.root);
+            Console.WriteLine(tt);
         }
 
         private static void AVLDriver()

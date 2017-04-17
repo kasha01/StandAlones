@@ -98,6 +98,30 @@ namespace DataStructure.Trees
             Console.Write(n.data + " ");
         }
 
+        public void getCountofLeaves()
+        {
+            traverse_in_postorder(this.root);
+        }
+        
+        public int traverse_in_postorder(Node n)
+        {
+            if (n == null) { return 0; }
+
+            int l = traverse_in_postorder(n.left);
+            int r = traverse_in_postorder(n.right);
+            if (l == 0 && r == 0)
+            {
+                n.leaves = 1;
+                return 1;
+            }
+            else
+            {
+                n.leaves = l + r;
+                return l + r;
+            }
+            //Console.Write(n.data + " ");
+        }
+
         public int getHeight(Node n)
         {
             int h = 0;

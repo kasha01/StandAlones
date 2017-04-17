@@ -13,6 +13,7 @@ namespace DataStructure.Trees
         public Node parent;
         public int data;
         public int height;
+        public int leaves;  // count of leaves the node has
 
         public Node(int d)
         {
