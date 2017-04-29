@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Helper = Algorithms.HelpersDataStructures;
 using GraphNS = Algorithms.GraphTheory;
+using DP = Algorithms.DynamicProgramming;
 
 namespace Algorithms
 {
@@ -12,8 +13,19 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            Driver_HeldKarp();
+            KnapsackDriver();
             Console.ReadLine();
+        }
+
+        static void KnapsackDriver()
+        {
+            int[] W = { 1,3,4,5 };
+            int[] V = { 1,4,5,7 };
+            int M = 7;
+
+            DP.Knapsack sack = new DP.Knapsack(W, V, M);
+            int result = sack.getMax_01Knapsack();
+            Console.WriteLine("Max Value that I can fit in this Bag is: " + result);
         }
 
         static void KruskalDriver()
