@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DynamicProgramming\HanoiTower.cs" />
     <Compile Include="DynamicProgramming\Knapsack.cs" />
     <Compile Include="GraphTheory\Edge.cs" />
     <Compile Include="GraphTheory\Graph.cs" />

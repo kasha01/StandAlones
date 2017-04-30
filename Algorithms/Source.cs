@@ -13,14 +13,20 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            KnapsackDriver();
             Console.ReadLine();
+        }
+
+        static void HanoiTowerDriver() {
+            var st = new Stack<int>();
+            st.Push(5); st.Push(4); st.Push(3); st.Push(2); st.Push(1);
+            DP.HanoiTower t = new DP.HanoiTower(st);
+            t.buildTower(st.Count);
         }
 
         static void KnapsackDriver()
         {
-            int[] W = { 1,3,4,5 };
-            int[] V = { 1,4,5,7 };
+            int[] W = { 1, 3, 4, 5 };
+            int[] V = { 1, 4, 5, 7 };
             int M = 7;
 
             DP.Knapsack sack = new DP.Knapsack(W, V, M);
