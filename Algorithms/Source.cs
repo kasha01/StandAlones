@@ -13,10 +13,12 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
+            Driver_LevenshteinDistance();
             Console.ReadLine();
         }
 
-        static void HanoiTowerDriver() {
+        static void HanoiTowerDriver()
+        {
             var st = new Stack<int>();
             st.Push(5); st.Push(4); st.Push(3); st.Push(2); st.Push(1);
             DP.HanoiTower t = new DP.HanoiTower(st);
@@ -176,5 +178,27 @@ namespace Algorithms
             };
             sk.HeldKarp(d);
         }
+
+        #region Dyanmic Programming Drivers
+
+        static void Driver_LongestIncreasingSubsequence()
+        {
+            int[] arr = { 22, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 33, 50, 41, 60 };
+            DP.LongestIncreasingSubSequence lis = new DynamicProgramming.LongestIncreasingSubSequence(arr);
+            lis.LIS();
+        }
+
+        static void Driver_LongestCommonSubsequence()
+        {
+            DP.LongestCommonSubSequence lcs = new DynamicProgramming.LongestCommonSubSequence("ABCDGH", "AEDFHR");
+            lcs.getCountOfLCS();
+        }
+
+        static void Driver_LevenshteinDistance()
+        {
+            DP.LevenshteinDistance lev = new DynamicProgramming.LevenshteinDistance("sunday", "saturday");
+            lev.getLevenshteinDistance();
+        }
+        #endregion
     }
 }
