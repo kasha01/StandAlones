@@ -13,7 +13,12 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            Driver_LevenshteinDistance();
+            DP.Knapsack knap = new DP.Knapsack();
+            int[] val = { 60, 100, 120 };
+            int[] wt = { 10, 20, 30 };
+            int W = 50;
+            int rs = knap.getMax_01Knapsack_naive(W, wt, val, 3);
+            Console.WriteLine(rs);
             Console.ReadLine();
         }
 
@@ -198,6 +203,13 @@ namespace Algorithms
         {
             DP.LevenshteinDistance lev = new DynamicProgramming.LevenshteinDistance("sunday", "saturday");
             lev.getLevenshteinDistance();
+        }
+
+        static void Driver_MinNoOfJumps()
+        {
+            int[] arr = { 1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9 };
+            DP.MinimumNumberOfJumpsToReachEndOfArray minjumps = new DynamicProgramming.MinimumNumberOfJumpsToReachEndOfArray(arr);
+            minjumps.getMinNumberOfJumps();
         }
         #endregion
     }

@@ -43,11 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DynamicProgramming\BinomialCoefficient.cs" />
+    <Compile Include="DynamicProgramming\CoinChange.cs" />
     <Compile Include="DynamicProgramming\HanoiTower.cs" />
     <Compile Include="DynamicProgramming\Knapsack.cs" />
     <Compile Include="DynamicProgramming\LevenshteinDistance.cs" />
     <Compile Include="DynamicProgramming\LongestCommonSubSequence.cs" />
     <Compile Include="DynamicProgramming\LongestIncreasingSubSequence.cs" />
+    <Compile Include="DynamicProgramming\MinimumNumberOfJumpsToReachEndOfArray.cs" />
     <Compile Include="GraphTheory\Edge.cs" />
     <Compile Include="GraphTheory\Graph.cs" />
     <Compile Include="GraphTheory\HeldKarp_TravellingSalesman.cs" />

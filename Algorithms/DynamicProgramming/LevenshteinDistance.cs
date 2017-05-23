@@ -52,6 +52,8 @@ namespace Algorithms.DynamicProgramming
 
             // Print Levenshtein Distance
             Console.WriteLine(String.Format("Minimum operations to convert {0} to {1} is {2}", source, target, memo[row - 1, col - 1]));
+
+            // TODO: Track the operations
         }
     }
 }

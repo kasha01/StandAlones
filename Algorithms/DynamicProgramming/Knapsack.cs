@@ -12,6 +12,7 @@ namespace Algorithms.DynamicProgramming
         int[] value;
         int MaxWeight;
 
+        public Knapsack() { }
         public Knapsack(int[] w, int[] v, int W)
         {
             this.weight = w;
@@ -84,6 +85,21 @@ namespace Algorithms.DynamicProgramming
             foreach (var t in items) { Console.WriteLine(String.Format("Item Weight: {0} - Item Index: {1}", t.Item1, t.Item2)); }
 
             return m[itemsCount, MaxWeight];
+        }
+
+        public int getMax_01Knapsack_naive(int W, int[] w, int[] v, int n)
+        {
+            // knapsack is empty OR there is no more items
+            if (W == 0 || n == 0)
+                return 0;
+
+            // item is heavier than available knapsack weight, exclude it (n-1) and move on with the remaining items
+            if (w[n - 1] > W)
+                return getMax_01Knapsack_naive(W, w, v, n - 1);
+            
+            // return Max if the item exist or not exist in the optimal set
+            return Math.Max(v[n - 1] + getMax_01Knapsack_naive(W - w[n - 1], w, v, n - 1),
+                getMax_01Knapsack_naive(W, w, v, n - 1));
         }
     }
 }
