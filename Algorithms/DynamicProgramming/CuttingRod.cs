@@ -68,7 +68,7 @@ namespace Algorithms.DynamicProgramming
                 {
                     int r = i - j;
                     // j = 0 ==> all in remainder (one piece rod)
-                    max = Math.Max(memo[j] + memo[i - j], max);
+                    max = Math.Max(memo[j] + memo[r], max);
                 }
                 memo[i] = max;
                 max = 0;
