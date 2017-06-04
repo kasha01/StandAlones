@@ -13,12 +13,10 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            DP.Knapsack knap = new DP.Knapsack();
-            int[] val = { 60, 100, 120 };
-            int[] wt = { 10, 20, 30 };
-            int W = 50;
-            int rs = knap.getMax_01Knapsack_naive(W, wt, val, 3);
-            Console.WriteLine(rs);
+            int[] val = { 4, 10, 3, 7, 1 };
+            DP.CuttingRod rod = new DynamicProgramming.CuttingRod(val.Length);
+            int res = rod.getMaxValue_bottomUp2(val.Length, val);
+            Console.WriteLine(res);
             Console.ReadLine();
         }
 
@@ -205,11 +203,21 @@ namespace Algorithms
             lev.getLevenshteinDistance();
         }
 
+        // Egg Dropping
         static void Driver_MinNoOfJumps()
         {
             int[] arr = { 1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9 };
             DP.MinimumNumberOfJumpsToReachEndOfArray minjumps = new DynamicProgramming.MinimumNumberOfJumpsToReachEndOfArray(arr);
             minjumps.getMinNumberOfJumps();
+        }
+
+        // Longest Palindormic Subsequence
+        static void Driver_LongestPalindormicSubsequence()
+        {
+            string s = "GEEKSFORGEEKS";
+            DP.LongestPalindromicSubsequence lps = new DynamicProgramming.LongestPalindromicSubsequence(s);
+            int res = lps.getLPS_TopDown(0, s.Length - 1, s);
+            Console.WriteLine(res);
         }
         #endregion
     }
