@@ -13,10 +13,7 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            int[] val = { 4, 10, 3, 7, 1 };
-            DP.CuttingRod rod = new DynamicProgramming.CuttingRod(val.Length);
-            int res = rod.getMaxValue_bottomUp2(val.Length, val);
-            Console.WriteLine(res);
+            
             Console.ReadLine();
         }
 
@@ -217,6 +214,22 @@ namespace Algorithms
             string s = "GEEKSFORGEEKS";
             DP.LongestPalindromicSubsequence lps = new DynamicProgramming.LongestPalindromicSubsequence(s);
             int res = lps.getLPS_TopDown(0, s.Length - 1, s);
+            Console.WriteLine(res);
+        }
+
+        static void Driver_RodCutting()
+        {
+            int[] val = { 4, 10, 3, 7, 1 };
+            DP.CuttingRod rod = new DynamicProgramming.CuttingRod(val.Length);
+            int res = rod.getMaxValue_bottomUp2(val.Length, val);
+            Console.WriteLine(res);
+        }
+
+        static void Driver_MaxSumOfIncreasingSubSequence()
+        {
+            int[] s = { 100, 2, 3, 5, 101 };
+            DP.MaximumIncreasingSubsequence ma = new DynamicProgramming.MaximumIncreasingSubsequence();
+            int res = ma.getMaxSum(s);
             Console.WriteLine(res);
         }
         #endregion
