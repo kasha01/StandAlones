@@ -10,6 +10,9 @@ namespace Mix
     {
         static void Main(string[] args)
         {
+            int[] arr = { 1, 8, 5, 10 };
+            partition(arr);
+            Console.ReadKey();
         }
 
         #region Gray Code
@@ -63,5 +66,49 @@ namespace Mix
 
         #endregion
 
+        #region PartitionProblem
+        // http://www.geeksforgeeks.org/dynamic-programming-set-18-partition-problem/ 
+        public static void partition(int[] arr)
+        {
+            int sum = 0;
+            for (int i = 0; i < arr.Length; i++)
+                sum = sum + arr[i];
+
+            if (sum % 2 != 0)
+                Console.WriteLine("Array cannot be divided into two equal sums");
+            else
+            {
+                int callCount = 0;
+                var res = subSetSum(arr, arr.Length, sum / 2, ref callCount);
+                string result = res 
+                    ? "Array can be divided into two equal sums" 
+                    : "Array cannot be divided into two equal sums";
+                Console.WriteLine(result);
+            }
+        }
+
+        private static bool subSetSum(int[] arr, int n, int sum, ref int c)
+        {
+            c++;
+            if (sum == 0)           // we have achieved a subset with sum/2
+                return true;
+
+            if (sum < 0)            // sum is less than zero, arr[n-1] is too big -happens only when arr[n-1] is included.
+                return false;
+
+            if (n == 0)             // Lenght of the subset is zero
+                return false;
+
+            /*
+             * a) item arr[n-1] is excluded
+             * b) item arr[n-1] is included       
+             * since this is an OR, once a true is returned, this statement will always conclude to true so it will
+             * auto return without any subsequent recursive calls.      
+             */
+            return subSetSum(arr, n - 1, sum, ref c) || subSetSum(arr, n - 1, sum - arr[n - 1], ref c);
+        }
+
+
+        #endregion
     }
 }

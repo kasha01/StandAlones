@@ -6,6 +6,15 @@ using System.Threading.Tasks;
 
 namespace Algorithms.DynamicProgramming
 {
+    /* To find the LCS of sequences s1 & s2, we need to find the LCS of their subsequence and to find that, we need to find the length 
+     * of their sub-sub sequence and so on, we have two cases, if the X[last] = Y[last] that means their LCS is
+     * the LCS of (X[last-1], Y[last-1]) in other words it is the previous solution.
+     * second case if X[last] != Y[last] here we have two sub cases:
+     * A) since X[last] is not common as it doesn't equal Y[last] we can omit it and find LCS of (X[last-1], Y[last]) OR
+     * B) we can do this: since Y[last] is not common as it doesn't equal X[last] we can omit it and find LCS of (X[last], Y[last-1])
+     * and get the Max of the two cases A,B.
+     * Check AlgoNotes word doc
+     */
     public class LongestCommonSubSequence
     {
         string s1; string s2;

@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Helper = Algorithms.HelpersDataStructures;
 using GraphNS = Algorithms.GraphTheory;
 using DP = Algorithms.DynamicProgramming;
 
+// http://www.geeksforgeeks.org/dynamic-programming-set-20-maximum-length-chain-of-pairs/
 namespace Algorithms
 {
     class Source
     {
         static void Main(string[] args)
         {
+            DP.MaxLenghtOfChainOfPairs mx = new DynamicProgramming.MaxLenghtOfChainOfPairs();
+            mx.getMaxLength();
             Console.ReadLine();
         }
 

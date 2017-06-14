@@ -54,6 +54,7 @@
     <Compile Include="DynamicProgramming\LongestIncreasingSubSequence.cs" />
     <Compile Include="DynamicProgramming\LongestPalindromicSubsequence.cs" />
     <Compile Include="DynamicProgramming\MaximumIncreasingSubsequence.cs" />
+    <Compile Include="DynamicProgramming\MaxLenghtOfChainOfPairs.cs" />
     <Compile Include="DynamicProgramming\MinimumNumberOfJumpsToReachEndOfArray.cs" />
     <Compile Include="GraphTheory\Edge.cs" />
     <Compile Include="GraphTheory\Graph.cs" />

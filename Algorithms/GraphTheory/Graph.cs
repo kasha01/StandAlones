@@ -178,7 +178,7 @@ namespace Algorithms.GraphTheory
         {
             DisJointSet<T> jointset = new DisJointSet<T>();
 
-            // sort edges
+            // sort edges ascn
             edgeList.Sort(getAscEdgeComparer());
 
             // Create sets for each vertex

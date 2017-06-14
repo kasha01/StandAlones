@@ -6,15 +6,6 @@ using System.Threading.Tasks;
 
 namespace Algorithms.DynamicProgramming
 {
-    /* To find the LCS of sequences s1 & s2, we need to find the LCS of their subsequence and to find that, we need to find the length 
-     * of their sub-sub sequence and so on, we have two cases, if the X[last] = Y[last] that means their LCS is
-     * the LCS of (X[last-1], Y[last-1]) in other words it is the previous solution.
-     * second case if X[last] != Y[last] here we have two sub cases:
-     * A) since X[last] is not common as it doesn't equal Y[last] we can omit it and find LCS of (X[last-1], Y[last]) OR
-     * B) we can do this: since Y[last] is not common as it doesn't equal X[last] we can omit it and find LCS of (X[last], Y[last-1])
-     * and get the Max of the two cases A,B.
-     * Check AlgoNotes word doc
-     */
     public class LongestIncreasingSubSequence
     {
         private int[] arr;
@@ -54,5 +45,33 @@ namespace Algorithms.DynamicProgramming
 
             Console.WriteLine("Count of LIS is: " + max);
         }
+
+        // This also works but 1st approach is better as I can implicity initialize lic array
+        public void getLIS_2()
+        {
+            int n = arr.Length;
+            int[] lic = new int[n];
+
+            for (int i = 0; i < n; i++)
+                lic[i] = 1;
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = i + 1; j < n; j++)
+                {
+                    if (arr[i] < arr[j])
+                    {
+                        lic[j] = Math.Max(lic[j], lic[i] + 1);
+                    }
+                }
+            }
+
+            int mx = 0;
+            for (int i = 0; i < n; i++)
+                mx = Math.Max(mx, lic[i]);
+
+            Console.WriteLine("Longest Increasing subsequence Length is " + mx);
+        }
     }
 }
+
