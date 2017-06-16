@@ -11,8 +11,9 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            DP.MaxLenghtOfChainOfPairs mx = new DynamicProgramming.MaxLenghtOfChainOfPairs();
-            mx.getMaxLength();
+            //DP.MaxLenghtOfChainOfPairs mx = new DynamicProgramming.MaxLenghtOfChainOfPairs();
+            //mx.getMaxLength();
+            Driver_LongestIncreasingSubsequence();
             Console.ReadLine();
         }
 
@@ -182,9 +183,10 @@ namespace Algorithms
 
         static void Driver_LongestIncreasingSubsequence()
         {
-            int[] arr = { 22, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 33, 50, 41, 60 };
+            int[] arr = { 0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15 };
             DP.LongestIncreasingSubSequence lis = new DynamicProgramming.LongestIncreasingSubSequence(arr);
-            lis.LIS();
+            int v = lis.LongestIncreasingSubsequenceLength(arr, arr.Length);
+            Console.WriteLine(v);
         }
 
         static void Driver_LongestCommonSubsequence()
