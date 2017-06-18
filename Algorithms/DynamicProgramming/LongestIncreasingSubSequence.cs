@@ -4,19 +4,6 @@ using System.Collections.Generic;
 // http://www.geeksforgeeks.org/longest-monotonically-increasing-subsequence-size-n-log-n/
 namespace Algorithms.DynamicProgramming
 {
-    /* This works for unique list
-     * end element of shorter candidate subsequencee is ALWAYS smaller than the end element of a longer candidate subsequence.
-     * There are 3 cases:
-     * Case 1: if X < end element of shorted active list (smallest end element) ==> start a new active list with X element.
-     * Case 2: if X > end element of longest active list (largest end element)  ==> extend the longest active list by X.
-     * Case 3: if X is between smallest end element and largest end element ==> find the end element of an active list that's a ceiling of X
-     * i.e. if end element of an active list is 9, and end element of another active list is 11 and X = 7..then 9 is the Ceiling of X=7 =>
-     * thus replace end element of that active list (ending 9) with 7.
-     * The longest active list is the length of the LIS.
-     * In this Algorithm, I don't need to keep full active lists. I just need to keep the end elements of the active lists. in which
-     * The smallest end element is tailtable[0], largest end element is the last element in tailtable, elements in between do get replaced
-     * if an A[i]=X appears in which that end element is a ceiling of X.
-     */
     public class LongestIncreasingSubSequence
     {
         private int[] arr;
@@ -86,8 +73,22 @@ namespace Algorithms.DynamicProgramming
         }
         #endregion
 
-
         #region NLog(N) Solution
+        /* This works for unique list
+         * end element of shorter candidate subsequencee is ALWAYS smaller than the end element of a longer candidate subsequence.
+         * There are 3 cases:
+         * Case 1: if X < end element of shorted active list (smallest end element) ==> start a new active list with X element.
+         * Case 2: if X > end element of longest active list (largest end element)  ==> extend the longest active list by X.
+         * Case 3: if X is between smallest end element and largest end element ==> find the end element of an active list that's a ceiling of X
+         * i.e. if end element of an active list is 9, and end element of another active list is 11 and X = 7..then 9 is the Ceiling of X=7 =>
+         * thus replace end element of that active list (ending 9) with 7.
+         * The longest active list is the length of the LIS.
+         * In this Algorithm, I don't need to keep full active lists. I just need to keep the end elements of the active lists. in which
+         * The smallest end element is tailtable[0], largest end element is the last element in tailtable, elements in between do get replaced
+         * if an A[i]=X appears in which that end element is a ceiling of X.
+         */
+
+
         /* 
          * Find the value A[i] that is smaller than key
          * Ceiling index only called in Case 3 situation
@@ -180,7 +181,7 @@ namespace Algorithms.DynamicProgramming
                     // Case 3
                     // A[i] wants to be the current end candidate of an existing
                     // subsequence. So It needs to replace ceil value in tailTable
-                    
+
                     // tailTable[CeilIndex(tailTable, -1, len - 1, A[i])] = A[i];
                     // tailTable[CeilIndexN(tailTable, 0, len - 1, A[i])] = A[i];
                     tailTable[CeilIndexBS2(tailTable, 0, len - 1, A[i])] = A[i];
@@ -188,6 +189,38 @@ namespace Algorithms.DynamicProgramming
 
             return len;
         }
+        #endregion
+
+        #region Variation of LIS
+
+        // Cities are 1-1 correspondance
+        // http://www.geeksforgeeks.org/dynamic-programming-set-14-variations-of-lis/
+        public void riverCrossingBridges(int[] cityN, int[] cityS, int n)
+        {
+            //put city South in a dic CityValue:Index
+            Dictionary<int, int> map = new Dictionary<int, int>();
+            for (int i = 0; i < n; i++)
+                map.Add(cityS[i], i);
+
+            int[] lis = new int[n];
+            lis[0] = 1;
+            for (int i = 1; i < n; i++)
+            {
+                lis[i] = 1; // you can have a minimum 1 bridge
+                for (int j = i - 1; j >= 0; j--)
+                {
+                    if (map[cityN[j]] < map[cityN[i]])
+                        lis[i] = Math.Max(lis[j] + 1, lis[i]);
+                }
+            }
+
+            int max = 1;
+            for (int i = 0; i < n; i++)
+                max = Math.Max(max, lis[i]);
+
+            Console.WriteLine("Maximum Number of non crossing bridges is " + max);
+        }
+
         #endregion
     }
 }
