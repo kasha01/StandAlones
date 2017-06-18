@@ -221,6 +221,19 @@ namespace Algorithms.DynamicProgramming
             Console.WriteLine("Maximum Number of non crossing bridges is " + max);
         }
 
+        /*
+         * Box Stack: we sort the boxes in descending order by base, to ensure I do have the maximum solution
+         * (Max number of items in the solution). take for instance this: (base area, height)
+         * {3,2} {4,1} {2,5} => without sorting I have 
+         *   2     1   5+1=6 => Max height of 6
+         *   
+         * {4,1} {3,2} {2,5} => with sorting I have 
+         *   1     3   5+3=8
+         *   
+         * Notice, when I didn't sort, the {3,2} was excluded from the solution, any base that is smaller than the max base and
+         * has an index/order before the max base will be excluded from the solution, to satisfy the max stack height, I need to
+         * statisfy the maximum number of items considered in the solution, thus with sorting I guarantee that.
+         */
         #endregion
     }
 }
