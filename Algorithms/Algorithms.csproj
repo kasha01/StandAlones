@@ -48,6 +48,7 @@
     <Compile Include="DynamicProgramming\CuttingRod.cs" />
     <Compile Include="DynamicProgramming\HanoiTower.cs" />
     <Compile Include="DynamicProgramming\Knapsack.cs" />
+    <Compile Include="DynamicProgramming\LargestIndependentSet.cs" />
     <Compile Include="DynamicProgramming\LevenshteinDistance.cs" />
     <Compile Include="DynamicProgramming\LongestBitonicSubsequence.cs" />
     <Compile Include="DynamicProgramming\LongestCommonSubSequence.cs" />
@@ -70,7 +71,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -11,9 +11,6 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            //DP.MaxLenghtOfChainOfPairs mx = new DynamicProgramming.MaxLenghtOfChainOfPairs();
-            //mx.getMaxLength();
-            Driver_LongestIncreasingSubsequence();
             Console.ReadLine();
         }
 
