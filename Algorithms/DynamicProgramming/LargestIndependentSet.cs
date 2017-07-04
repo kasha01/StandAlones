@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 
 // http://www.geeksforgeeks.org/largest-independent-set-problem/
+
+/*
+ * The node is either included or excluded from the Set
+ * if Node is included ==> its included count = 1 (the node itself) + ExcludedSet of Adjacent nodes
+ * if Node is excluded ==> its excluded count = Max(left node Included count, left node Excluded count) + Max(right node Included count, right node Excluded count)
+ * 
+ */
 namespace Algorithms.DynamicProgramming
 {
     public class LargestIndependentSet
@@ -10,20 +17,19 @@ namespace Algorithms.DynamicProgramming
         {
             public Node left;
             public Node right;
-            public Node parent;
             public int data;
-            public int Included = 1;
-            public int NotIncluded = 0;
-            public List<int> includes;
-            public List<int> notincludes;
+            public int includedCount = 1;
+            public int excludedCount = 0;
+            public List<int> includedNodesList;
+            public List<int> excludedNodesList;
 
             public Node(int d)
             {
                 this.data = d;
                 this.left = null;
                 this.right = null;
-                includes = new List<int>();
-                notincludes = new List<int>();
+                includedNodesList = new List<int>();
+                excludedNodesList = new List<int>();
             }
         }
 
@@ -56,11 +62,11 @@ namespace Algorithms.DynamicProgramming
         public void solvemedumb()
         {
             postorder(this.root);
-            Console.WriteLine(this.root.Included + " " + this.root.NotIncluded);
-            Console.WriteLine("Largest Independent Set: " + Math.Max(this.root.Included, this.root.NotIncluded));
+            Console.WriteLine(this.root.includedCount + " " + this.root.excludedCount);
+            Console.WriteLine("Largest Independent Set: " + Math.Max(this.root.includedCount, this.root.excludedCount));
             Console.WriteLine("Largest Independent Set is: ");
 
-            List<int> list = root.Included > root.NotIncluded ? root.includes : root.notincludes;
+            List<int> list = root.includedCount > root.excludedCount ? root.includedNodesList : root.excludedNodesList;
 
             foreach (int item in list)
                 Console.Write(item + " ");
@@ -76,39 +82,39 @@ namespace Algorithms.DynamicProgramming
             postorder(n.left);
             postorder(n.right);
 
-            int lx = n.left != null ? n.left.NotIncluded : 0;
-            int rx = n.right != null ? n.right.NotIncluded : 0;
-            int li = n.left != null ? n.left.Included : 0;
-            int ri = n.right != null ? n.right.Included : 0;
+            int lx = n.left != null ? n.left.excludedCount : 0;
+            int rx = n.right != null ? n.right.excludedCount : 0;
+            int li = n.left != null ? n.left.includedCount : 0;
+            int ri = n.right != null ? n.right.includedCount : 0;
 
-            var llx = n.left != null ? n.left.notincludes : new List<int>();
-            var rrx = n.right != null ? n.right.notincludes : new List<int>();
-            var lli = n.left != null ? n.left.includes : new List<int>();
-            var rri = n.right != null ? n.right.includes : new List<int>();
+            var llx = n.left != null ? n.left.excludedNodesList : new List<int>();
+            var rrx = n.right != null ? n.right.excludedNodesList : new List<int>();
+            var lli = n.left != null ? n.left.includedNodesList : new List<int>();
+            var rri = n.right != null ? n.right.includedNodesList : new List<int>();
 
-            n.Included = lx + rx + 1;
-            n.NotIncluded = Math.Max(li, lx) + Math.Max(ri, rx);
+            n.includedCount = lx + rx + 1;
+            n.excludedCount = Math.Max(li, lx) + Math.Max(ri, rx);
 
-            n.includes.Add(n.data);
-            n.includes.AddRange(llx);
-            n.includes.AddRange(rrx);
+            n.includedNodesList.Add(n.data);
+            n.includedNodesList.AddRange(llx);
+            n.includedNodesList.AddRange(rrx);
 
             if (lli.Count > llx.Count)
             {
-                n.notincludes.AddRange(lli);
+                n.excludedNodesList.AddRange(lli);
             }
             else
             {
-                n.notincludes.AddRange(llx);
+                n.excludedNodesList.AddRange(llx);
             }
 
             if (rri.Count > rrx.Count)
             {
-                n.notincludes.AddRange(rri);
+                n.excludedNodesList.AddRange(rri);
             }
             else
             {
-                n.notincludes.AddRange(rrx);
+                n.excludedNodesList.AddRange(rrx);
             }
         }
     }

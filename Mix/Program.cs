@@ -110,5 +110,29 @@ namespace Mix
 
 
         #endregion
+
+        #region Misc
+
+        private List<List<int>> getSubSets(int[] set)
+        {
+            // in short the key is generate all binary numbers from (0) to (n-1), then loop through the bits of each number to see what character repsentation it
+            // contains e.g. 100 - represent a subset that has the 3rd character in the set,
+            // 011, represetn a subset that has the 1st and 2nd character in the set and so on
+            int n = set.Length;
+            List<List<int>> result = new List<List<int>>();
+            for (int i = 0; i < (1 << n); i++)
+            {
+                var l = new List<int>();
+
+                for (int j = 0; j < n; j++)
+                    if ((i & (1 << j)) > 0)
+                        l.Add(set[j]);
+
+                result.Add(l);
+            }
+            return result;
+        }
+
+        #endregion
     }
 }
