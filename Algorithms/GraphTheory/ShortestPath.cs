@@ -138,7 +138,7 @@ namespace Algorithms.GraphTheory
                 {
                     for (int v = 0; v < verticesCount; v++)  //loop thru all edges from u --> v
                     {
-                        if (graph[u, v] != int.MaxValue)    //there is a connect if it is max
+                        if (graph[u, v] != int.MaxValue)    //there is a connect if it is not a max
                         {
                             int w = graph[u, v];
                             if (dist[u] + w < dist[v])
@@ -161,9 +161,9 @@ namespace Algorithms.GraphTheory
             int[,] path = new int[gsize, gsize];
 
             // int
-            for (int i = 0; i < gsize - 1; i++)
+            for (int i = 0; i < gsize; i++)
             {
-                for (int j = 0; j < gsize - 1; j++)
+                for (int j = 0; j < gsize; j++)
                 {
                     if (graph[i, j] != 0)
                     {
@@ -173,14 +173,67 @@ namespace Algorithms.GraphTheory
                     else
                     {
                         // no path - in graph matrix, if the value is zero - it means there is no path
-                        dist[i, j] = int.MaxValue;
+                        dist[i, j] = i == j ? 0 : int.MaxValue;     // distance from node to self is zero
                         path[i, j] = -1;
                     }
                 }
             }
 
-            // to be continued :)
+            //Algo
+            for (int k = 0; k < gsize; k++) // intermediate node
+            {
+                for (int i = 0; i < gsize; i++)
+                {
+                    for (int j = 0; j < gsize; j++)
+                    {
+                        if (dist[i, k] == int.MaxValue || dist[k, j] == int.MaxValue)
+                            continue;
+
+                        int distanceviaIntermediateNode = dist[i, k] + dist[k, j];
+                        if (dist[i, j] > distanceviaIntermediateNode)
+                        {
+                            dist[i, j] = distanceviaIntermediateNode;
+                            path[i, j] = path[k, j];
+                        }
+                    }
+                }
+            }
+
+            //detect negative cycle
+            for (int i = 0; i < gsize; i++)
+            {
+                if (dist[i, i] < 0)     // the distance from the node to itself cannot be least than 0
+                    throw new Exception("Negative Cycle Detected");
+            }
+
+            //print path (from node 0 to last node index in graph "node gsize-1")
+            PrintPathRoyWarshall(0, gsize-1, path);
         }
+
+
+        private static void PrintPathRoyWarshall(int s, int t, int[,] path)
+        {
+            Stack<int> stack = new Stack<int>();
+            stack.Push(t);
+
+            while (true)
+            {
+                t = path[s, t];  // t is now the intermediate node
+
+                if (t == -1)
+                    return;     // No Path
+
+                stack.Push(t);
+                if (s == t)
+                    break;
+            }
+
+            while (stack.Count > 0)
+            {
+                Console.Write(stack.Pop() + " --> ");
+            }
+        }
+
 
         public static void PrintPathFromSToV(int node)
         {
