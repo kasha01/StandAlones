@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 /// <summary>
 /// Thanks to Rohan Laishram
@@ -12,7 +8,12 @@ namespace Algorithms.DynamicProgramming
 {
     /* The memo has the attempts to obtain each value upto sum. and the number of ways at each value is increment of old no of ways +
      * number of ways to obtain (V-coin) value. if I have a coin = 1, then surely the sum=3 can be obtained from the no of ways of 2.
-     * because 1(mycoin) + 2 = myvalue(3)...and if 2 can be obtained by 2 ways, then I can obtain 3 by 2 ways also
+     * because 1(mycoin) + 2 = myvalue(3)...and if 2 can be obtained by 2 ways, then I can obtain 3 by 2 ways also.
+     
+     * This idea can be implemented in a more optimized way using O(n) space, as I loop through all coins, and then loop through the sums that are
+     * greater than my coin, as in, I am on sum=3, and I have coin=2, then number of ways is table[2]=table[2]+table[0]. as table[0] has the count
+     * of ways to get sum=1; and as I said above to get sum=3. number of ways equals all the ways to get previous sums in which they (the prev sums) are
+     * the difference of my current sum - my available coin. So I loop through all coins and all the sums...table[n-1] will have my final result
      */
     public class CoinChange
     {

@@ -57,6 +57,8 @@
     <Compile Include="DynamicProgramming\MaximumIncreasingSubsequence.cs" />
     <Compile Include="DynamicProgramming\MaxLenghtOfChainOfPairs.cs" />
     <Compile Include="DynamicProgramming\MinimumNumberOfJumpsToReachEndOfArray.cs" />
+    <Compile Include="DynamicProgramming\MinInitialPointsToReachDestination.cs" />
+    <Compile Include="DynamicProgramming\MobileNumericKeypad.cs" />
     <Compile Include="DynamicProgramming\SubsetSumProblem.cs" />
     <Compile Include="GraphTheory\Edge.cs" />
     <Compile Include="GraphTheory\Graph.cs" />

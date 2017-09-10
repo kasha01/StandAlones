@@ -52,6 +52,8 @@ namespace DataStructure
             root.right.right = new DataStructure.Trees.Node(3);
             root.right.left = new DataStructure.Trees.Node(4);
 
+            tree.printTreeByLevels(root);
+            Console.WriteLine();
             tree.inorder(tree.root);
             Console.WriteLine();
             tree.preorder(tree.root);

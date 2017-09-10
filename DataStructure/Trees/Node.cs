@@ -14,6 +14,7 @@ namespace DataStructure.Trees
         public int data;
         public int height;
         public int leaves;  // count of leaves the node has
+        public Node nextRight; // points to the adjacent node.
 
         public Node(int d)
         {

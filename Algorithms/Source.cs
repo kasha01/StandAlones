@@ -10,10 +10,8 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            
-            Console.ReadLine();
         }
-
+        
         static void HanoiTowerDriver()
         {
             var st = new Stack<int>();

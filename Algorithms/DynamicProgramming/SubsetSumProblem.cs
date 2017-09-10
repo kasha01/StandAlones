@@ -9,7 +9,6 @@ namespace Algorithms.DynamicProgramming
 {
     class SubsetSumProblem
     {
-
         /* naive approach 
          * recurssively: last item in set is either included or excluded 
          */

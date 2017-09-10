@@ -71,6 +71,7 @@ namespace DataStructure.Trees
             return n;
         }
 
+        // convert BST to ascending sorted array
         public void inorder(Node n)
         {
             if (n == null) { return; }
@@ -140,5 +141,55 @@ namespace DataStructure.Trees
             }
             return getDepth(n.parent) + 1;
         }
+
+        public void printTreeByLevels(Node root)
+        {
+            // <level, list of nodes in level>
+            Dictionary<int, List<Node>> dic = new Dictionary<int, List<Node>>();
+            
+            //Fill dictionary with nodes by level
+            postorder_2(root, 0, dic);
+
+            //Construct Node.nextRight
+            foreach(var list in dic.Values)
+            {
+                for(int i=0; i<list.Count-1; i++)
+                {
+                    list[i].nextRight = list[i + 1];
+                }
+            }
+
+            // print by next Right
+            foreach(int l in dic.Keys)
+            {
+                Node firstNode = dic[l][0];
+                while(firstNode != null)
+                {
+                    Console.Write(firstNode.data + " ");
+                    firstNode = firstNode.nextRight;
+                }
+                Console.WriteLine();
+            }
+        }
+
+        void postorder_2(Node n, int l, Dictionary<int, List<Node>> mp)
+        {
+            if (n == null) { return; }
+            int level = l + 1;
+            postorder_2(n.left, level, mp);
+            postorder_2(n.right, level, mp);
+
+            if (!mp.ContainsKey(level))
+            {
+                // not found
+                List<Node> list = new List<Node>(); list.Add(n);
+                mp.Add(level,list);
+            }
+            else
+            {
+                mp[level].Add(n);
+            }
+        }
+
     }
 }
