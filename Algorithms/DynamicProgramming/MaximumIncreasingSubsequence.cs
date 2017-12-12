@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 // http://www.geeksforgeeks.org/dynamic-programming-set-14-maximum-sum-increasing-subsequence/
 namespace Algorithms.DynamicProgramming
 {
-    public class MaximumIncreasingSubsequence
+	// example input array= {1, 101, 2, 3, 100, 4, 5}, then output should be 106 (1 + 2 + 3 + 100)
+	// example2 input array= {1, 99, 2, 3, 100, 4, 5}, then output should be 199. note, I cannot loop if seq[j]<seq[i] then add
+	// this would give me the wrong answer as it would give me 1+99+2+3+100 not an increasing seq.
+	public class MaximumIncreasingSubsequence
     {
         // TODO: Using Segment Tree gives a more efficient log(n) solution
         public int getMaxSum(int[] seq)

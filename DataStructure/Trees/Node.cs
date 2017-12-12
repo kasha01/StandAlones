@@ -8,6 +8,8 @@ namespace DataStructure.Trees
 {
     public class Node
     {
+        public Node prev;
+        public Node next;
         public Node left;
         public Node right;
         public Node parent;

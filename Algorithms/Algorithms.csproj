@@ -67,6 +67,7 @@
     <Compile Include="HelpersDataStructures\DisJointSet.cs" />
     <Compile Include="HelpersDataStructures\MinPriorityQueue.cs" />
     <Compile Include="HelpersDataStructures\Node.cs" />
+    <Compile Include="Search\KMP.cs" />
     <Compile Include="Sorting\Sorting.cs" />
     <Compile Include="Source.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

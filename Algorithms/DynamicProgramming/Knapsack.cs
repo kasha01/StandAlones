@@ -68,7 +68,7 @@ namespace Algorithms.DynamicProgramming
             // Tuple --> Item Weight, Item Index/Name in weight array
             List<Tuple<int, int>> items = new List<Tuple<int, int>>();
             int sumw = m[itemsCount, MaxWeight]; int _i = itemsCount; int _w = MaxWeight;
-            while (_w > 0)
+            while (_i > 0)
             {
                 if (m[_i, _w] == m[_i - 1, _w])
                 {

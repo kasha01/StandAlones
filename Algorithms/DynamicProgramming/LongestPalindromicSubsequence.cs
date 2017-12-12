@@ -12,6 +12,14 @@
  * at an even length less than mine....so hypothetically, if I did L[i+1][j]...this will leave my subsequence at an odd count and I cannot have +2 to it
  * making the whole step invalid...Just saying. 
  * Notice also in step 3, I don't have a +2 b/c the letters are NOT equal, and I merely want to carry the Max solution I have so far
+ * NOTE: This is longest Palindromic SUB-SEQUENCE, which is different from Sub-String. in Sub-sequence, elements don't have
+ * to be contiguous/in order, that is why in case 2, I don't have to check if the "substring" behind me is also truely
+ * palindormic.
+ * EX: "abada" -> on i=0,j=4 X[0]==X[4] which will give me L[0][4] = L[i+1][j-1]+2 = L[1][3] + 2 = 3
+ * EX: "abadaa" -> on i=0,j=5 X[0]==X[5] which will give me L[0][5] = L[i+1][j-1]+2 = L[1][4] + 2 = 3+2=5. notice L[1][4] which
+ * represents the sequence "bada" has a palindrome of length 3, but "abadaa" substring has NO palindrome of length 5, as
+ * a + "bada" + a, dont form a true palindrome, but I don't care about the order since I am talking about subsequence,
+ * and surely abadaa has a palindromic subsequence of 5 that is "aabaa" or "aadaa". the length is correct.
 */
 
 namespace Algorithms.DynamicProgramming

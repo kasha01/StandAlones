@@ -45,6 +45,7 @@ namespace Algorithms.DynamicProgramming
                     }
                     else
                     {
+						// memo[i,j] : replace, memo[i+1,j]: insert, memo[i,j+1]:remove
                         memo[i + 1, j + 1] = 1 + Math.Min(Math.Min(memo[i + 1, j], memo[i, j + 1]), memo[i, j]);
                     }
                 }

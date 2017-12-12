@@ -210,6 +210,7 @@ namespace Algorithms.DynamicProgramming
                 for (int j = i - 1; j >= 0; j--)
                 {
                     if (map[cityN[j]] < map[cityN[i]])
+						// LIS logic
                         lis[i] = Math.Max(lis[j] + 1, lis[i]);
                 }
             }
@@ -221,8 +222,20 @@ namespace Algorithms.DynamicProgramming
             Console.WriteLine("Maximum Number of non crossing bridges is " + max);
         }
 
-        /*
-         * Box Stack: we sort the boxes in descending order by base, to ensure I do have the maximum solution
+		/*
+         * Box Stack: 
+		 * Condition, stack a list of boxes, you can rotate the box and you can use each instance of different rotation of the same box
+		 * (i.e.) box {1,2,3} can be used 3 times as {1,2,3} and {3,2,1} and {3,1,2} {l,w,h}
+		 * the base box must have its base dimension > upper box in the stack. i.e. wb>wt & lb>lt ->subsequently base_b>base_t
+		 * How?
+		 * Generate all possible rotations of a box, so the new array will be 3 times the old array
+		 * sort 3n-array by base area in descending order (to guarantee bottom box has larger base which is part of the condition)
+		 * find the LIS of the height of the box in which (wb<wt & lb<lt) b:bottom box, t:top box.
+		 * 
+		 * 
+		 * we sort the boxes in descending order by base, to ensure I do have the maximum solution, as I will ensure my bottom base
+		 * (1st box in LIS) has the bigger base, satisfying the condition, of course besides that, I still do need to check of width,length
+		 * dimensions of the base
          * (Max number of items in the solution). take for instance this: (base area, height)
          * {3,2} {4,1} {2,5} => without sorting I have 
          *   2     1   5+1=6 => Max height of 6
@@ -234,7 +247,7 @@ namespace Algorithms.DynamicProgramming
          * has an index/order before the max base will be excluded from the solution, to satisfy the max stack height, I need to
          * statisfy the maximum number of items considered in the solution, thus with sorting I guarantee that.
          */
-        #endregion
-    }
+		#endregion
+	}
 }
 

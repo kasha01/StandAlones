@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Algorithms.HelpersDataStructures
 {
+	// Priority Queue implementation using Binary Heap. A better implementation would be using Fibonnaci heap
     class MinPriorityQueue<T>
     {
         public int heapSize { get; set; }

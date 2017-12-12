@@ -75,7 +75,16 @@ namespace Algorithms.GraphTheory
             Print(distance, verticesCount);
         }
 
-        public static void DijkstraWithPriorityQueue(int[,] graph, int source, int verticesCount)
+		/*
+		 * The time complexity of the above code/algorithm looks O(V^2) as there are two nested while loops.
+		 * If we take a closer look, we can observe that the statements in inner loop are executed O(V+E) times (similar to BFS).
+		 * The inner loop has decreaseKey() operation which takes O(LogV) time. So overall time complexity is O(E+V)*O(LogV) 
+		 * which is O((E+V)*LogV).
+		 * Note that the below code uses Binary Heap for Priority Queue implementation. Time complexity can be reduced to
+		 * O(E + VLogV) using Fibonacci Heap. The reason is, Fibonacci Heap takes O(1) time for decrease-key operation 
+		 * while Binary Heap takes O(Logn) time.
+		 */
+		public static void DijkstraWithPriorityQueue(int[,] graph, int source, int verticesCount)
         {
             int[] distance = new int[verticesCount];
             bool[] shortestPathTreeSet = new bool[verticesCount];
@@ -193,7 +202,11 @@ namespace Algorithms.GraphTheory
                         if (dist[i, j] > distanceviaIntermediateNode)
                         {
                             dist[i, j] = distanceviaIntermediateNode;
-                            path[i, j] = path[k, j];
+                            path[i, j] = path[k, j]; // at the end of all loops. path[i,j] will have the index of the
+							// intermediate node right before target j. basically say, the shortest path from i to j. passes
+							// via the intermediate node k. then I need to find how to get to k. that is the shortest path
+							// from i to k, which will pass throw an other intermidate, so target now becomes k and my 
+							// other intermediate becomes j and so on....check in print path method.
                         }
                     }
                 }
@@ -218,7 +231,9 @@ namespace Algorithms.GraphTheory
 
             while (true)
             {
-                t = path[s, t];  // t is now the intermediate node
+                t = path[s, t];  // t is now the intermediate node. next loop is to find how to get from s to that
+								// intermediate node. i.e. target (t) is my intermediate, and need to find the new intermediate
+								// and so on until s==t i.e. source equals my intermediate.
 
                 if (t == -1)
                     return;     // No Path

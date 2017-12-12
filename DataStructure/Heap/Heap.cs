@@ -4,6 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/* Comparison of Heap sort:
+ * Heap sort is in-place (O(1) auxilary space). Not a stable sort (equal elements initial sort is not preserved due to heapifying)
+ * Worst-case (upper bound): O(n log n) 
+ * Best-case: O(n)
+ * space: O(1) auxilary
+ * 
+ * Heap sort compete with Quick sort: Heap sort has better upper bound of O(n log n), quick sort has worst case of O(n^2) which
+ * makes it not suitable for big data.
+ * Heap sort is good for embedded system or system with small memory
+ * 
+ * Heap sort competes with Merge sort: Merge sort space omega(n). but merge sort has some advantages over Heap:
+ * it is suitable for parallel algorithm (running different parts of the algorithm on different machines then combine the result),
+ * it supports external sorting (different parts of data can be on memory and other on the hardisk), for heap sort, locality of 
+ * reference is a limitation 
+ */
+
 namespace DataStructure.Heap
 {
     // Heap + Heap Sort
@@ -87,6 +103,8 @@ namespace DataStructure.Heap
             }
         }
 
+		//Heapifying as it swifts down, it can go to one side of the tree but has to ignore the other, therefore, we do n/2 and
+		// reheapify so all nodes are eventually in right place
         void buildMaxHeap()
         {
             int n = arr.Length;

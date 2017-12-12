@@ -8,7 +8,12 @@ using System.Threading.Tasks;
 // http://www.geeksforgeeks.org/dynamic-programming-set-20-maximum-length-chain-of-pairs/
 namespace Algorithms.DynamicProgramming
 {
-    /* Note: Unlike in LIS or LCS. In this question, the sequence can be rearranged to give the max length
+	// For example, if the given pairs are {{5, 24}, {39, 60}, {15, 28}, {27, 40}, {50, 90} }, 
+	// then the longest chain that can be formed is of length 3, and the chain is {{5, 24}, {27, 40}, {50, 90}}
+	// given: a<b in every pair all the time
+	// condition: b<a'
+
+	/* Note: Unlike in LIS or LCS. In this question, the sequence can be rearranged to give the max length
      * consider the chain {a,b} {a',b'} {a'',b''} {a''',b'''} ...etc  
      * First we sort the sequence so we guarantee an increasing pattern
      * Then we loop thru all pairs and we basically exclude the pairs that don't meet the condition of a'>b
@@ -24,7 +29,7 @@ namespace Algorithms.DynamicProgramming
      * and this allows more increasing pairs to be part of the answer.
      * The sort ensures an increasing pattern and the b/item sort ensures max number of pairs is included in the answer.
      */
-    public class MaxLenghtOfChainOfPairs
+	public class MaxLenghtOfChainOfPairs
     {
         public void getMaxLength()
         {

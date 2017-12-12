@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="DisJointSet\DisJointSet.cs" />
     <Compile Include="Heap\Heap.cs" />
+    <Compile Include="LinkedList\LinkedList.cs" />
     <Compile Include="MinPriorityQueue\MinimumPriorityQueue_of_nodes.cs" />
     <Compile Include="SkipList\SkipList.cs" />
     <Compile Include="Source.cs" />

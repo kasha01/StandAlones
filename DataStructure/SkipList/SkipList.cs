@@ -71,8 +71,9 @@ namespace DataStructure.SkipList
             }
 
             int level = 0; // always insert at bottom level 0
-            int LowLevelNodeIndex = nodestoupdate.Count - 1;  //in search, ground level node was inserted last, we searched Top to bottom
-            Node newNode = null;
+			//in the while search above, ground level node was inserted last, we searched Top to bottom
+			int LowLevelNodeIndex = nodestoupdate.Count - 1; 
+			Node newNode = null;
 
             while (level == 0 || flipCoin())
             {

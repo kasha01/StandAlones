@@ -1,118 +1,125 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataStructure
 {
-    class Source
-    {
-        static void Main(string[] args)
-        {
-            BST_Driver();
-            Console.ReadLine();
-        }
+	class Source
+	{
+		static void Main(string[] args)
+		{
+			//HeapDriver();
+			//BST_Driver();
+			HeapDriver();
+			Console.ReadLine();
+		}
 
-        static void Trie_Driver()
-        {
-            Trees.TrieTree tree = new Trees.TrieTree();
-            tree.insert("abc");
-            tree.insert("adk");
-            tree.insert("ab");
-            tree.insert("abz");
+		static void Trie_Driver()
+		{
+			Trees.TrieTree tree = new Trees.TrieTree();
+			tree.insert("abc");
+			tree.insert("adk");
+			tree.insert("ab");
+			tree.insert("abz");
 
-            //tree.insert("ab");
-            //tree.insert("a");
-            //tree.delete("ab", 0, tree.root);
+			//tree.insert("ab");
+			//tree.insert("a");
+			//tree.delete("ab", 0, tree.root);
 
 
-            Console.WriteLine("abc: " + tree.IsFound("abc"));
-            Console.WriteLine("zkf: " + tree.IsFound("zkf"));
-            Console.WriteLine("abz: " + tree.IsFound("abz"));
-            Console.WriteLine("ab: " + tree.IsFound("ab"));
-            Console.WriteLine("kdf: " + tree.IsFound("kdf"));
-            Console.WriteLine("adk: " + tree.IsFound("adk"));
-            tree.delete("abc", 0, tree.root);
-            tree.delete("abc", 0, tree.root);
-            Console.WriteLine("abc: " + tree.IsFound("abc"));
-            Console.WriteLine("ab: " + tree.IsFound("ab"));
-            Console.WriteLine("a: " + tree.IsFound("a"));
+			Console.WriteLine("abc: " + tree.IsFound("abc"));
+			Console.WriteLine("zkf: " + tree.IsFound("zkf"));
+			Console.WriteLine("abz: " + tree.IsFound("abz"));
+			Console.WriteLine("ab: " + tree.IsFound("ab"));
+			Console.WriteLine("kdf: " + tree.IsFound("kdf"));
+			Console.WriteLine("adk: " + tree.IsFound("adk"));
+			tree.delete("abc", 0, tree.root);
+			tree.delete("abc", 0, tree.root);
+			Console.WriteLine("abc: " + tree.IsFound("abc"));
+			Console.WriteLine("ab: " + tree.IsFound("ab"));
+			Console.WriteLine("a: " + tree.IsFound("a"));
 
-        }
+		}
 
-        private static void BST_Driver()
-        {
-            DataStructure.Trees.BinarySearchTree tree = new Trees.BinarySearchTree();
+		private static void BST_Driver()
+		{
+			DataStructure.Trees.BinarySearchTree tree = new Trees.BinarySearchTree();
 
-            tree.insert(1);
-            DataStructure.Trees.Node root = tree.root;
-            root.right = new DataStructure.Trees.Node(2);
-            root.left = new DataStructure.Trees.Node(1);
-            root.right.right = new DataStructure.Trees.Node(3);
-            root.right.left = new DataStructure.Trees.Node(4);
+			tree.insert(1);
+			DataStructure.Trees.Node root = tree.root;
+			root.right = new DataStructure.Trees.Node(3);
+			root.left = new DataStructure.Trees.Node(2);
+			root.left.left = new DataStructure.Trees.Node(4);
+			root.left.left.left = new DataStructure.Trees.Node(6);
+			root.left.right = new DataStructure.Trees.Node(5);
+			root.left.right.right = new DataStructure.Trees.Node(7);
 
-            tree.printTreeByLevels(root);
-            Console.WriteLine();
-            tree.inorder(tree.root);
-            Console.WriteLine();
-            tree.preorder(tree.root);
-            Console.WriteLine();
-            tree.postorder(tree.root);
-            Console.WriteLine();
-            Console.WriteLine(tree.getDepth(root.left.left));
-            int tt = tree.traverse_in_postorder(tree.root);
-            Console.WriteLine(tt);
-        }
+			tree.postorder(root);
+			Console.WriteLine();
+			tree.morrisPostorderTraversal(root);
 
-        private static void AVLDriver()
-        {
-            DataStructure.Trees.AVL_Tree tree = new DataStructure.Trees.AVL_Tree();
-            int[] arr = { 5, 3 };
+			DataStructure.Trees.Node common_ancestor = null;
+			tree.LCA(tree.root, 4, 4, ref common_ancestor);
 
-            foreach (var t in arr)
-            {
-                tree.insert_AVL(t);
-            }
+			tree.printTreeByLevels(root);
+			Console.WriteLine();
+			tree.inorder(tree.root);
+			Console.WriteLine();
+			tree.preorder(tree.root);
+			Console.WriteLine();
+			tree.postorder(tree.root);
+			Console.WriteLine();
+			Console.WriteLine(tree.getDepth(root.left.left));
+			int tt = tree.traverse_in_postorder(tree.root);
+			Console.WriteLine(tt);
+		}
 
-            tree.insert_AVL(2);
-        }
+		private static void AVLDriver()
+		{
+			DataStructure.Trees.AVL_Tree tree = new DataStructure.Trees.AVL_Tree();
+			int[] arr = { 5, 3 };
 
-        private void SkipListDriver()
-        {
-            SkipList.SkipList list = new SkipList.SkipList();
-            list.insert(5);
-            list.insert(10);
-            list.insert(9);
-            list.insert(8);
-            list.insert(12);
-            list.insert(1);
-            list.insert(50);
-            list.insert(60);
-            list.insert(70);
-            list.insert(90);
+			foreach (var t in arr)
+			{
+				tree.insert_AVL(t);
+			}
 
-            list.PrintAllValues();
-            list.delete(10);
-            list.delete(1);
-            list.PrintAllValues();
-        }
+			tree.insert_AVL(2);
+		}
 
-        private static void HeapDriver()
-        {
-            int[] arr = { 10, 5, 2, 20, 15, 6 };
-            printArray(arr);
-            Console.WriteLine();
-            Heap.Heap heap = new Heap.Heap(arr, true);
-            heap.printHeap();
-            heap.heapsort(true);
-        }
+		private void SkipListDriver()
+		{
+			SkipList.SkipList list = new SkipList.SkipList();
+			list.insert(5);
+			list.insert(10);
+			list.insert(9);
+			list.insert(8);
+			list.insert(12);
+			list.insert(1);
+			list.insert(50);
+			list.insert(60);
+			list.insert(70);
+			list.insert(90);
 
-        static void printArray(int[] arr)
-        {
-            foreach (var i in arr)
-                Console.Write(i + " ");
+			list.PrintAllValues();
+			list.delete(10);
+			list.delete(1);
+			list.PrintAllValues();
+		}
 
-        }
-    }
+		private static void HeapDriver()
+		{
+			int[] arr = { 10, 5, 2, 20, 15, 6 };
+			printArray(arr);
+			Console.WriteLine();
+			Heap.Heap heap = new Heap.Heap(arr, true);
+			heap.printHeap();
+			heap.heapsort(true);
+		}
+
+		static void printArray(int[] arr)
+		{
+			foreach (var i in arr)
+				Console.Write(i + " ");
+
+		}
+	}
 }
