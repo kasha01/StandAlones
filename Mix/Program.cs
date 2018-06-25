@@ -8,11 +8,164 @@ namespace Mix
 {
 	class Program
 	{
+		// not mine
+
+		static void invalidate_validate_matrix(int x, int y, int[,] matrix, int n, bool b)
+		{
+			int z = 1;
+			if (b)
+			{
+				// make it valid
+				z = -1;
+			}
+			else
+			{
+				// make in valid. +1
+			}
+
+			int tempx = x; int tempy = y;
+
+			tempx = tempx + 1;
+			tempy = tempy + 1;
+			while (tempx >= 0 && tempy >= 0 && tempx < n && tempy < n)
+			{
+				matrix[tempx, tempy] = matrix[tempx, tempy] + z;
+				tempx = tempx + 1;
+				tempy = tempy + 1;
+			}
+
+			tempx = x; tempy = y;
+			tempx = tempx + 1;
+			tempy = tempy - 1;
+			while (tempx >= 0 && tempy >= 0 && tempx < n && tempy < n)
+			{
+				matrix[tempx, tempy] = matrix[tempx, tempy] + z;
+				tempx = tempx + 1;
+				tempy = tempy - 1;
+			}
+
+			tempx = x; tempy = y;
+			tempx = tempx - 1;
+			tempy = tempy + 1;
+			while (tempx >= 0 && tempy >= 0 && tempx < n && tempy < n)
+			{
+				matrix[tempx, tempy] = matrix[tempx, tempy] + z;
+				tempx = tempx - 1;
+				tempy = tempy + 1;
+			}
+
+			tempx = x; tempy = y;
+			tempx = tempx - 1;
+			tempy = tempy - 1;
+			while (tempx >= 0 && tempy >= 0 && tempx < n && tempy < n)
+			{
+				matrix[tempx, tempy] = matrix[tempx, tempy] + z;
+				tempx = tempx - 1;
+				tempy = tempy - 1;
+			}
+		}
+
+		static bool validate_matrix(int x, int y, int[,] matrix, int n)
+		{
+			int tempx = x; int tempy = y;
+
+			tempx = tempx + 1;
+			tempy = tempy + 1;
+			while (tempx >= 0 && tempy >= 0 && tempx < n && tempy < n)
+			{
+				if (matrix[tempx, tempy] != 0) { return false; }
+				tempx = tempx + 1;
+				tempy = tempy + 1;
+			}
+
+			tempx = x; tempy = y;
+			tempx = tempx + 1;
+			tempy = tempy - 1;
+			while (tempx >= 0 && tempy >= 0 && tempx < n && tempy < n)
+			{
+				if (matrix[tempx, tempy] != 0) { return false; }
+				tempx = tempx + 1;
+				tempy = tempy - 1;
+			}
+
+			tempx = x; tempy = y;
+			tempx = tempx - 1;
+			tempy = tempy + 1;
+			while (tempx >= 0 && tempy >= 0 && tempx < n && tempy < n)
+			{
+				if (matrix[tempx, tempy] != 0) { return false; }
+				tempx = tempx - 1;
+				tempy = tempy + 1;
+			}
+
+			tempx = x; tempy = y;
+			tempx = tempx - 1;
+			tempy = tempy - 1;
+			while (tempx >= 0 && tempy >= 0 && tempx < n && tempy < n)
+			{
+				if (matrix[tempx, tempy] != 0) { return false; }
+				tempx = tempx - 1;
+				tempy = tempy - 1;
+			}
+
+			return true;
+		}
+
+		static bool validate(int r, int c, int n, int[,] matrix, List<bool> rows, List<bool> columns)
+		{
+			if (rows[r] || columns[c] || matrix[r, c] != 0)
+			{
+				return false;
+			}
+			return true;
+			// validation matrix
+			//return validate_matrix(r, c, matrix, n);
+		}
+
+		static void bt(int row, int n, List<int> vec, int[,] matrix, List<bool> rows, List<bool> columns)
+		{
+
+			if (row >= n)
+			{
+				// print result
+				for (int i = 0; i < n; i++)
+				{
+					Console.Write(vec[i] + " ");
+				}
+				return;
+			}
+
+			for (int c = 0; c < n; c++)
+			{
+				// validate my Queen location, on row, column=c
+				if (!validate(row, c, n, matrix, rows, columns))
+				{
+					continue;
+				}
+
+				// it is valid. invalidate other squares, put my queen here
+				rows[row] = true;   // invalidate my row - occupied
+				columns[c] = true;// invalidate my column
+				bool b = false;
+				matrix[row, c] = matrix[row, c] + 1;
+				invalidate_validate_matrix(row, c, matrix, n, b); // invalidate matrix
+
+				vec.Add(c);
+
+				bt(row + 1, n, vec, matrix, rows, columns);
+
+				// back track
+				rows[row] = false;   // invalidate my row
+				columns[c] = false;// invalidate my column
+				b = true;
+				invalidate_validate_matrix(row, c, matrix, n, b); // invalidate matrix
+				matrix[row, c] = matrix[row, c] - 1;
+				vec.RemoveAt(vec.Count - 1);
+			}
+		}
+
 		static void Main(string[] args)
 		{
-			int[] arr = { 1, 8, 5, 10 };
-			//partition(arr);
-			gray("",3);
 			Console.ReadKey();
 		}
 
@@ -172,7 +325,7 @@ namespace Mix
 		#endregion
 
 		#region Combination of coins {10,15,30} upto a 1000
-		// since all numbers are multiples of 5, so they can be formed by 5 multiple...so the combination is 10, 15, 20,25,30,35..etc
+		// since all numbers are multiples of 5, so they can be formed by 5 multiple (largest common factor)...so the combination is 10, 15, 20,25,30,35..etc
 		static void mt()
 		{
 			SortedSet<int> set = new SortedSet<int>();
@@ -228,6 +381,19 @@ namespace Mix
 			}
 			return result;
 		}
+
+		// https://leetcode.com/articles/repeated-string-match/
+		// how many times short string A, needs to be repeated so it will contain string B.
+		private static int repeatedStringMatch(String A, String B)
+		{
+			int q = 1;
+			StringBuilder S = new StringBuilder(A);
+			for (; S.Length < B.Length; q++) S.Append(A);
+			if (S.ToString().IndexOf(B) >= 0) return q;
+			if (S.Append(A).ToString().IndexOf(B) >= 0) return q + 1;
+			return -1;
+		}
+
 
 		#endregion
 	}

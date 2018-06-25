@@ -5,7 +5,6 @@ namespace Algorithms.DynamicProgramming
 {
 	public class LongestBitonicSubsequence
 	{
-		// I think this is a wrong implementation
 		public void getLongestBitonic(int[] seq)
 		{
 			int[] lis = new int[seq.Length];

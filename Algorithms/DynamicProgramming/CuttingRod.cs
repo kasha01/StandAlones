@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 // http://www.geeksforgeeks.org/dynamic-programming-set-13-cutting-a-rod/
 namespace Algorithms.DynamicProgramming
 {
-    public class CuttingRod
+	public class CuttingRod
     {
         int[] memo;
 
@@ -43,11 +39,12 @@ namespace Algorithms.DynamicProgramming
             val[0] = 0;
             int i, j;
             
-            for (i = 1; i <= n; i++)
+            for (i = 1; i <= n; i++) // i loop through all sub length of the rods
             {
                 int max_val = int.MinValue;
-                for (j = 0; j < i; j++)
+                for (j = 0; j < i; j++)	// j loop through all cutting placing in current sub-rod length
                     max_val = Math.Max(max_val, s[j] + val[i - j - 1]);
+
                 val[i] = max_val;
             }
             return val[n];

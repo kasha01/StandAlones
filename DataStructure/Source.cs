@@ -6,9 +6,6 @@ namespace DataStructure
 	{
 		static void Main(string[] args)
 		{
-			//HeapDriver();
-			//BST_Driver();
-			HeapDriver();
 			Console.ReadLine();
 		}
 
@@ -38,7 +35,7 @@ namespace DataStructure
 			Console.WriteLine("a: " + tree.IsFound("a"));
 
 		}
-
+				
 		private static void BST_Driver()
 		{
 			DataStructure.Trees.BinarySearchTree tree = new Trees.BinarySearchTree();

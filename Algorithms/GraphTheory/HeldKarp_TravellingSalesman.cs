@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Algorithms.GraphTheory
 {
@@ -28,7 +25,7 @@ namespace Algorithms.GraphTheory
 
 			// Dictionary of ((target Node - Subsets)/MinDPRoute that I can go thru to reach target Node) - intermediate/parent node right before reaching target.
 			Dictionary<MinDPRoute, int> parent = new Dictionary<MinDPRoute, int>(new FooEqualityComparer());
-			
+
 			// skip start node = node 0 - loop thru nodes
 			foreach (List<int> subset in listofSubSets)
 			{
@@ -73,7 +70,7 @@ namespace Algorithms.GraphTheory
 					{
 						dp = new MinDPRoute() { targetNode = targetN, thrusubset = subset };
 						mincost = dist[0, targetN]; // cost to reach target node N from 0 via an empty set. so essentially
-						// dist[source,target] = dist[0,targetN]
+													// dist[source,target] = dist[0,targetN]
 					}
 
 					// save min dist

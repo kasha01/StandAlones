@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Algorithms.DynamicProgramming
 {
-    /// <summary>
-    /// minimum operations (insert, remove, replace) to convert string source into string target
-    /// </summary>
-    public class LevenshteinDistance
+	/// <summary>
+	/// minimum operations (insert, remove, replace) to convert string source into string target
+	/// </summary>
+	public class LevenshteinDistance
     {
         private readonly string source; private readonly string target;
         int[,] memo;
@@ -44,8 +40,7 @@ namespace Algorithms.DynamicProgramming
                         memo[i + 1, j + 1] = memo[i,j]; // recur the last operation
                     }
                     else
-                    {
-						// memo[i,j] : replace, memo[i+1,j]: insert, memo[i,j+1]:remove
+                    {	// i=target, j=source: i+1,j = remove; i,j+1=insert; i,j=replace.
                         memo[i + 1, j + 1] = 1 + Math.Min(Math.Min(memo[i + 1, j], memo[i, j + 1]), memo[i, j]);
                     }
                 }

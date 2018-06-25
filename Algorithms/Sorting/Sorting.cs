@@ -79,7 +79,7 @@
 				return;
 
 			// same as (l+r)/2 but this avids overflow of large l,r
-			int m = l + (r - l) / 2;
+			int m = l + ((r - l) / 2);
 			mergesort2(ar, l, m);
 			mergesort2(ar, m + 1, r);
 

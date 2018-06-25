@@ -264,6 +264,25 @@ namespace DataStructure.Trees
 			}
 		}
 
+		// Connect nodes on same level with nextRight pointer - THANKS TO HARI KRISHNAN
+		// (null nodes are not connected and will do a break in the level connection chain)
+		public void connect(Node p)
+		{
+			// Your Code Here
+			if (p.left != null && p.right != null)
+			{
+				p.left.nextRight = p.right;          // connect my left branch to my right branch
+				if (p.nextRight != null)
+					p.right.nextRight = p.nextRight.left; // connect the two subtrees (connects the right branch of subtree to
+														  // to the left branch of the adjacent subtree)
+			}
+
+			if (p.left != null)
+				connect(p.left);
+			if (p.right != null)
+				connect(p.right);
+		}
+
 		#region Morris Traversal
 		// http://www.geeksforgeeks.org/?p=6358
 

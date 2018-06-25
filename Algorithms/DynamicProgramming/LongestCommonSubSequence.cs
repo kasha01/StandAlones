@@ -29,7 +29,7 @@ namespace Algorithms.DynamicProgramming
             memo = new int[x, y];
         }
 
-        public void getCountOfLCS()
+        public void getCountOfLCSubsequence()
         {
             char row_char = '\0';
             char column_char = '\0';
@@ -62,5 +62,40 @@ namespace Algorithms.DynamicProgramming
 
             // TODO: track memo to get the LCS
         }
-    }
+
+
+		public void getCountOfLCSubstring()
+		{
+			char row_char = '\0';
+			char column_char = '\0';
+
+			// init memo - not needed for C# - int arrays gets initialized with 0
+			// for (int i = 0; i < x; i++) { memo[0, i] = 0; }
+			// for (int i = 0; i < y; i++) { memo[i, 0] = 0; }
+
+			// Do the work
+			int maxResult = 0;
+			for (int i = 0; i < s1L; i++)
+			{
+				// first row
+				row_char = s1[i];
+				for (int j = 0; j < s2L; j++)
+				{
+					column_char = s2[j];
+					if (row_char == column_char)
+					{
+						memo[i + 1, j + 1] = memo[i, j] + 1;
+						maxResult = Math.Max(memo[i + 1, j + 1], maxResult);
+					}
+					else
+					{
+						// do nothing
+					}
+				}
+			}
+
+			// Print the length of the LCS
+			Console.WriteLine("Length of LCS is: " + maxResult);
+		}
+	}
 }

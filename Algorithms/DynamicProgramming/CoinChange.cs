@@ -85,7 +85,7 @@ namespace Algorithms.DynamicProgramming
 				}
 			}
 
-			Console.WriteLine("coin chage ways are: " + memo[sum]);
+			Console.WriteLine("coin change ways are: " + memo[sum]);
 		}
 	}
 }
