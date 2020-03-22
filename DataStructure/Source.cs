@@ -6,7 +6,25 @@ namespace DataStructure
 	{
 		static void Main(string[] args)
 		{
-			Console.ReadLine();
+			Console.ReadLine ();
+		}
+
+		static void Min_Priority_Queue_Driver()
+		{
+			MinPriorityQueue.MinPriorityQueue_of_nodes<string> minQueue = new MinPriorityQueue.MinPriorityQueue_of_nodes<string> (10);
+
+			minQueue.add_with_priority ("alpha", 1);
+			minQueue.add_with_priority ("beta", 2);
+			minQueue.add_with_priority ("charlie", 3);
+			minQueue.add_with_priority ("delta", 5);
+
+			minQueue.decrease_priority ("delta", 0);
+
+			string s = minQueue.extract_min ();
+
+			Console.WriteLine (s);
+
+			Console.ReadLine ();
 		}
 
 		static void Trie_Driver()
