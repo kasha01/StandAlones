@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataStructure.MinPriorityQueue
 {
+	// Using Binary Heap
 	public class MinimumPriorityQueue_with_mapping<T>
 	{
 		private Node<T>[] arr;
@@ -36,19 +37,6 @@ namespace DataStructure.MinPriorityQueue
 			siftUp(heapSize - 1);
 		}
 
-		private void siftUp(int index)
-		{
-			if (index == 0) { return; }
-
-			int p = getParent(index);
-
-			if (p < heapSize && arr[p] > arr[index])
-			{
-				swap(p, index);
-			}
-			siftUp(p);
-		}
-
 		public void decrease_priority(T value, int newP)
 		{
 			int itemIndex = map [value];
@@ -60,6 +48,22 @@ namespace DataStructure.MinPriorityQueue
 			else
 			{
 				throw new Exception("New Priority is larget than current");
+			}
+		}
+
+		public void update_priority(T value, int newP)
+		{
+			int itemIndex = map [value];
+			if (arr[itemIndex].priority > newP)
+			{
+				arr[itemIndex].priority = newP;
+				siftUp(itemIndex);    //priority "decreased", push node up the heap
+			}
+			else if(arr[itemIndex].priority < newP)
+			{
+				// priority "increased", push node down the heap
+				arr[itemIndex].priority = newP;
+				siftDown(itemIndex);
 			}
 		}
 
@@ -84,6 +88,24 @@ namespace DataStructure.MinPriorityQueue
 			}
 
 			return n.data;
+		}
+
+		public void delete(T value){
+			decrease_priority (value, int.MinValue); // decrease item priority
+			extract_min();							 // extract item
+		}
+
+		private void siftUp(int index)
+		{
+			if (index == 0) { return; }
+
+			int p = getParent(index);
+
+			if (p < heapSize && arr[p] > arr[index])
+			{
+				swap(p, index);
+			}
+			siftUp(p);
 		}
 
 		private void siftDown(int index)
