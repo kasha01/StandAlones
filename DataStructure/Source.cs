@@ -6,7 +6,26 @@ namespace DataStructure
 	{
 		static void Main(string[] args)
 		{
-			Console.ReadLine ();
+			Min_Priority_Queue_with_map_Driver ();
+		}
+
+		static void Min_Priority_Queue_with_map_Driver()
+		{
+			MinPriorityQueue.MinimumPriorityQueue_with_mapping<string> minQueue = new MinPriorityQueue.MinimumPriorityQueue_with_mapping<string> (10);
+
+			minQueue.add_with_priority ("alpha", 10);
+			minQueue.add_with_priority ("beta", 20);
+			minQueue.add_with_priority ("charlie", 30);
+			minQueue.add_with_priority ("delta", 50);
+
+			minQueue.decrease_priority ("beta", 8);
+			minQueue.decrease_priority ("delta", 5);
+
+			string s = minQueue.extract_min ();
+			Console.WriteLine (s);
+
+			string s1 = minQueue.extract_min ();
+			Console.WriteLine (s1);
 		}
 
 		static void Min_Priority_Queue_Driver()
@@ -23,8 +42,6 @@ namespace DataStructure
 			string s = minQueue.extract_min ();
 
 			Console.WriteLine (s);
-
-			Console.ReadLine ();
 		}
 
 		static void Trie_Driver()

@@ -55,6 +55,8 @@
     <Compile Include="Trees\BinarySearchTree.cs" />
     <Compile Include="Trees\Node.cs" />
     <Compile Include="Trees\TrieTree.cs" />
+    <Compile Include="MinPriorityQueue\MinimumPriorityQueue_with_mapping.cs" />
+    <Compile Include="MinPriorityQueue\Node.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

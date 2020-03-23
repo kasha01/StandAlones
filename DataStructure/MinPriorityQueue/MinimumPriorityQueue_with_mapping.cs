@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 namespace DataStructure.MinPriorityQueue
 {
-	public class MinPriorityQueue_of_nodes<T>
+	public class MinimumPriorityQueue_with_mapping<T>
 	{
-		//Priority Zero is the highest Priority...Priority 100 is the lowest
-		//this is best fit for Dijksra, as lowest/shortest distance path will have top priority and will be at the top of the heap
-		public int heapSize { get; set; }
-		Node<T>[] arr;
+		private Node<T>[] arr;
+		private Dictionary<T, int> map;	// maps items to its index in the heap
 
-		public MinPriorityQueue_of_nodes(int size)
+		public int heapSize { get; set; }
+
+		public MinimumPriorityQueue_with_mapping(int size)
 		{
 			arr = new Node<T>[size];
+			map = new Dictionary<T, int> ();
 		}
 
 		private int getParent(int i) { return (i - 1) / 2; }
@@ -29,6 +30,8 @@ namespace DataStructure.MinPriorityQueue
 			// add new node to the tail of the heap and sift up
 			Node<T> n = new Node<T>(d, p);
 			arr[heapSize] = n;
+			map.Add (d, heapSize);
+
 			heapSize++;
 			siftUp(heapSize - 1);
 		}
@@ -72,6 +75,12 @@ namespace DataStructure.MinPriorityQueue
 		{
 			if (heapSize == 0) { throw new Exception("Priority Queue is empty"); }
 
+			// update map
+			T minData = arr [0].data;
+			T lastItemInHeap = arr [0].data;
+			map.Remove (minData);		// to be extracted
+			map[lastItemInHeap] = 0;	// last item in heap is brought into index 0
+
 			//get the top
 			Node<T> n = arr[0];            //extract the minimum node (top of heap)
 			arr[0] = arr[heapSize - 1]; //put the top at the tail of the p-queue (prepare for deleting it)
@@ -106,13 +115,19 @@ namespace DataStructure.MinPriorityQueue
 			}
 		}
 
-		public void emptifyQueue() { heapSize = 0; /*simply set size to 0*/ }
+		public void emptifyQueue() { map.Clear(); heapSize = 0; /*simply set size to 0*/ }
 
 		private void swap(int p, int index)
 		{
+			Node<T> parentNode = arr[p];
+			Node<T> indexNode = arr [index];
+
 			Node<T> temp = arr[p];
 			arr[p] = arr[index];
 			arr[index] = temp;
+
+			map[parentNode.data] = index;
+			map[indexNode.data] = p;
 		}
 	}
 }
