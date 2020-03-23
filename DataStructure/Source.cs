@@ -18,7 +18,7 @@ namespace DataStructure
 			minQueue.add_with_priority ("charlie", 30);
 			minQueue.add_with_priority ("delta", 50);
 
-			minQueue.decrease_priority ("beta", 8);
+			minQueue.decrease_priority ("beta", 12);
 			minQueue.decrease_priority ("delta", 5);
 
 			string s = minQueue.extract_min ();

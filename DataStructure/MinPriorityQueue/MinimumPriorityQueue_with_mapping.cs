@@ -51,23 +51,15 @@ namespace DataStructure.MinPriorityQueue
 
 		public void decrease_priority(T value, int newP)
 		{
-			//this is actually increasing priority, since we have MinPriorityQueue, items with priority (1) has "higher" priority than item with priority (2)
-			//find value
-			for (int i = 0; i < heapSize; i++)
+			int itemIndex = map [value];
+			if (arr[itemIndex].priority > newP)
 			{
-				if (arr[i].data.Equals(value))
-				{
-					// try to decrease priority
-					if (arr[i].priority > newP)
-					{
-						arr[i].priority = newP;
-						siftUp(i);    //priority "decreased", push node up the heap
-					}
-					else
-					{
-						throw new Exception("New Priority is larget than current");
-					}
-				}
+				arr[itemIndex].priority = newP;
+				siftUp(itemIndex);    //priority "decreased", push node up the heap
+			}
+			else
+			{
+				throw new Exception("New Priority is larget than current");
 			}
 		}
 
