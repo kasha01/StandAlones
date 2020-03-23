@@ -6,7 +6,26 @@ namespace DataStructure
 	{
 		static void Main(string[] args)
 		{
-			Min_Priority_Queue_with_map_Driver ();
+			Max_Priority_Queue_with_map_Driver ();
+		}
+
+		static void Max_Priority_Queue_with_map_Driver()
+		{
+			MinPriorityQueue.MaximumPriorityQueue_with_mapping<string> maxQueue = new MinPriorityQueue.MaximumPriorityQueue_with_mapping<string> (10);
+
+			maxQueue.add_with_priority ("alpha", 10);
+			maxQueue.add_with_priority ("beta", 20);
+			maxQueue.add_with_priority ("charlie", 30);
+			maxQueue.add_with_priority ("delta", 50);
+
+			maxQueue.update_priority ("beta", 120);
+			maxQueue.increase_priority ("charlie", 500);
+
+			string s = maxQueue.extract_max ();
+			Console.WriteLine (s);
+
+			string s1 = maxQueue.extract_max ();
+			Console.WriteLine (s1);
 		}
 
 		static void Min_Priority_Queue_with_map_Driver()

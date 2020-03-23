@@ -57,6 +57,7 @@
     <Compile Include="Trees\TrieTree.cs" />
     <Compile Include="MinPriorityQueue\MinimumPriorityQueue_with_mapping.cs" />
     <Compile Include="MinPriorityQueue\Node.cs" />
+    <Compile Include="MinPriorityQueue\MaximumPriorityQueue_with_mapping.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
