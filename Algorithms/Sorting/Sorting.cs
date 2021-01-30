@@ -131,7 +131,7 @@
 
 		#endregion
 
-		// Lomoto quick sort
+		// Lomoto quick sort - can be optimized for finding the kth largest/smallest element
 		public static int quicksort(int lo, int hi, int[] ar)
 		{
 			int pivot = ar[hi];
@@ -149,9 +149,9 @@
 					}
 				}
 			}
-			int temp2 = ar[i];
+
+			ar[hi] = ar[i];
 			ar[i] = pivot;
-			pivot = temp2;
 			return i;
 		}
 
@@ -165,5 +165,38 @@
 			}
 		}
 
+
+		// Hoare: notice pivot location is not necessarily at the index that is returned
+		private static int parition(int lo, int hi, int[] arr){
+			int pivot = arr [(lo + hi) / 2];
+			int i = lo - 1;
+			int j = hi + 1;
+
+			while (true) {
+				do {
+					i++;
+				} while(arr [i] < pivot);
+
+				do {
+					j--;
+				} while(arr [j] > pivot);
+
+				if (i >= j)
+					return j;
+
+				// swap i with j
+				int temp = arr[i];
+				arr [i] = arr [j];
+				arr [j] = temp;
+			}
+		}
+
+		private static void sortHoare(int lo, int hi, int[] arr){
+			if (lo < hi) {
+				int pivot = parition (lo, hi, arr);
+				sortHoare (lo, pivot, arr);
+				sortHoare (pivot + 1, hi, arr);
+			}
+		}
 	}
 }
