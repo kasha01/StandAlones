@@ -39,6 +39,25 @@ namespace Algorithms.DynamicProgramming
             }
             return m[MaxWeight];
         }
+        
+        int getMax_01Knapsack_best(int W, int []wt, int []val, int n)
+        {
+            // making and initializing dp array
+            int[] dp = new int[W + 1];
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int w = W; w >= 0; w--)
+                {
+
+                    if (wt[i] <= w)
+
+                        // finding the maximum value
+                        dp[w] = Math.Max(dp[w], dp[w - wt[i]] + val[i]);
+                }
+            }
+            return dp[W]; // returning the maximum value of knapsack
+        }
 
         public int getMax_01Knapsack()
         {
