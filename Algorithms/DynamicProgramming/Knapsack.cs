@@ -20,6 +20,71 @@ namespace Algorithms.DynamicProgramming
             this.MaxWeight = W;
         }
 
+        /// Knapsack - Max Value
+        // unbounded - repetition allowed
+		int getKnapsack_Unbounded_maxValue_best(int W, int n, int[] val, int[] wt){
+			var dp = new int[W+1];
+			int mx = 0;
+
+			for(int i=0;i<n;++i){
+                // notice weight here is ++w ==> so dp[w - wt[i]] has the results of i item in it. meaning i-item can be picked up multiple times.
+				for(int w=wt[i];w<=W;++w){
+					dp[w] = dp[w - wt[i]] + val[i];
+					mx = Math.Max(mx, dp[w]);
+				}
+			}
+
+			return mx;
+		}
+        
+        // bounded - cannot use same item twice        
+        int getKnapsack_01_maxValue_best(int W, int []wt, int []val, int n)
+        {
+            int[] dp = new int[W + 1];
+
+            for (int i = 0; i < n; i++)
+            {
+                // notice weight here is w-- ==> so dp[w-wt[i]] does not have the result of i-item in it, it has only the results of [0 to i-1] items.
+                // thus i-item is only picked once.
+                for (int w = W; w >= 0; w--)
+                {
+                    if (wt[i] <= w)
+                        dp[w] = Math.Max(dp[w], dp[w - wt[i]] + val[i]);
+                }
+            }
+            return dp[W]; // returning the maximum value of knapsack
+        }        
+        
+        /// Knapsack - number of ways to make sum s
+        // source: https://leetcode.com/problems/coin-change-2/discuss/99212/Knapsack-problem-Java-solution-with-thinking-process-O(nm)-Time-and-O(m)-Space
+        /** 
+         * @return number of ways to make sum s using repeated coins
+         */
+        public static int coinrep(int[] coins, int s) {
+            int[] dp = new int[s + 1]; 
+            dp[0] = 1;          
+            for (int coin : coins)      
+                for (int i = coin; i <= s; i++)         
+                    dp[i] += dp[i - coin];                                  
+            return dp[s];
+        }                                       
+
+        /**
+         * @return number of ways to make sum s using non-repeated coins
+         */
+        public static int coinnonrep(int[] coins, int s) {
+            int[] dp = new int[s + 1];
+            dp[0] = 1;  
+            for (int coin : coins)
+                for (int i = s; i >= coin; i--)
+                    dp[i] += dp[i - coin];              
+            return dp[s];                                                   
+        } 
+        
+        
+        /// Knapsack GeeksForGeeks
+        // unbounded
+        // https://www.geeksforgeeks.org/unbounded-knapsack-repetition-items-allowed/
         public int getMax_UnboundedKnapsack()
         {
             int itemsCount = weight.Length;             // How many Item I totally have
@@ -38,27 +103,9 @@ namespace Algorithms.DynamicProgramming
                 m[w] = best;
             }
             return m[MaxWeight];
-        }
-        
-        int getMax_01Knapsack_best(int W, int []wt, int []val, int n)
-        {
-            // making and initializing dp array
-            int[] dp = new int[W + 1];
+        }        
 
-            for (int i = 0; i < n; i++)
-            {
-                for (int w = W; w >= 0; w--)
-                {
-
-                    if (wt[i] <= w)
-
-                        // finding the maximum value
-                        dp[w] = Math.Max(dp[w], dp[w - wt[i]] + val[i]);
-                }
-            }
-            return dp[W]; // returning the maximum value of knapsack
-        }
-
+        // geeks for geeks version - bounded
         public int getMax_01Knapsack()
         {
             int itemsCount = value.Length;
