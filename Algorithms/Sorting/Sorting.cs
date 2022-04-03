@@ -166,7 +166,8 @@
 		}
 
 
-		// Hoare: notice pivot location is not necessarily at the index that is returned
+		// Hoare: notice pivot location is not necessarily at the index that is returned. i.e. pivot can be swapped
+		//  watch this https://www.youtube.com/watch?v=NuQYFXmLUrM
 		private static int parition(int lo, int hi, int[] arr){
 			int pivot = arr [(lo + hi) / 2];
 			int i = lo - 1;
